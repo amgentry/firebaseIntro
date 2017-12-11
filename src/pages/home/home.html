@@ -1,0 +1,51 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title text-center>
+            Movie Collector
+        </ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="addCard()">
+                <ion-icon name="add"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-card *ngFor="let card of cards | async">
+            <ion-item>
+                <ion-avatar item-start><img src="{{card.cardAvatar}}"></ion-avatar>
+                <button clear ion-button icon-only float-right (click)="deleteCard(card.id)">
+                    <ion-icon color="danger" name="trash"></ion-icon>
+                </button>
+
+                <button clear ion-button icon-only float-right (click)="updateCardDesc(card)">
+                    <ion-icon color="danger" name="hammer"></ion-icon>
+                </button>
+
+                <h2>{{card.cardName}}</h2>
+                <p>{{card.date}}</p>
+                </ion-item>
+            <img src="{{card.cardImg}}">
+            <ion-card-content> {{card.cardDesc}}</ion-card-content>
+            <ion-row>
+                <ion-col>
+                    <button ion-button icon-left clear small>
+                        <ion-icon name="thumbs-up"></ion-icon>
+                        <div (click)="likesClicked(card)"> {{card.likes}} Likes</div>
+                    </button>
+                </ion-col>
+                <!--<ion-col>-->
+                    <!--<button ion-button icon-left clear small>-->
+                        <!--<ion-icon name="text"></ion-icon>-->
+                        <!--<div>4 Comments</div>-->
+                    <!--</button>-->
+                <!--</ion-col>-->
+                <!--<ion-col center text-center>-->
+                    <!--<ion-note> 11h ago</ion-note>-->
+                <!--</ion-col>-->
+            </ion-row>
+        </ion-card>
+    </ion-list>
+</ion-content>
